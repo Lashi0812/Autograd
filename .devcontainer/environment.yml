@@ -1,0 +1,13 @@
+name: aot  # Name of the conda environment
+channels:
+  - nvidia
+  - pytorch-nightly
+  - anaconda 
+dependencies:
+  - pytorch 
+  - torchvision 
+  - torchaudio 
+  - pytorch-cuda=12.1
+  - ipykernel
+
+ 
