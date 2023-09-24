@@ -2,7 +2,6 @@ FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-
 RUN --mount=type=cache,target=/var/cache/apt \
     apt-get update && \
     apt-get install -y  bash \
@@ -34,6 +33,5 @@ RUN  --mount=type=cache,target=/root/.cache/pip python -m pip install -r /worksp
 
 # zsh plugin
 ENV SHELL /bin/zsh
-RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.zsh_history" \
-    && echo "$SNIPPET" >> "/root/.zsh_history"
-COPY .devcontainer/zsh-plugins/.p10k.zsh /root/
+COPY .devcontainer/zsh-plugins/.p10k.zsh .devcontainer/zsh-plugins/ohmyzsh.sh /root/
+RUN chmod +x /root/ohmyzsh.sh && sh -c /root/ohmyzsh.sh
